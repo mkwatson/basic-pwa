@@ -20,7 +20,7 @@
       navigator.serviceWorker.register('sw.js');
     }
 
-    // Check if we're in standalone mode (iOS) or display-mode=standalone
+    // Check if we're in standalone mode (iOS) or display-mode=fullscreen
     const isStandalone =
       window.matchMedia('(display-mode: fullscreen)').matches ||
       (typeof navigator.standalone !== 'undefined' && navigator.standalone);
