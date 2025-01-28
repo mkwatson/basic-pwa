@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Minimal PWA</title>
+  <!-- iOS meta tags for fullscreen on Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- App icons for iOS -->
+  <link rel="apple-touch-icon" href="icon.png" />
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
+</head>
+<body>
+  <h1 id="status"></h1>
+
+  <script>
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+
+    // Check if we're in standalone mode (iOS) or display-mode=standalone
+    const isStandalone =
+      window.matchMedia('(display-mode: fullscreen)').matches ||
+      (typeof navigator.standalone !== 'undefined' && navigator.standalone);
+
+    document.getElementById('status').textContent = isStandalone
+      ? 'Standalone/Installed Mode'
+      : 'Browser Mode';
+  </script>
+</body>
+</html>
